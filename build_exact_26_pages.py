@@ -352,25 +352,15 @@ def generate_report_26_pages():
     r.font.size = Pt(16)
     r.font.bold = True
 
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(8)
-    p.paragraph_format.space_after = Pt(2)
-    r = p.add_run("[Insert Official Chandigarh University Logo Here]")
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(11)
-    r.font.bold = True
-    r.font.color.rgb = RGBColor(180, 0, 0)
-
-    p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(0)
-    p.paragraph_format.space_after = Pt(16)
-    r = p.add_run("<Do Not Stretch the LOGO>")
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(9)
-    r.font.italic = True
-    r.font.color.rgb = RGBColor(120, 120, 120)
+    p_logo = doc.add_paragraph()
+    p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_logo.paragraph_format.space_before = Pt(8)
+    p_logo.paragraph_format.space_after = Pt(12)
+    r_logo = p_logo.add_run()
+    logo_path = os.path.join(os.path.dirname(__file__), 'assets_template', 'word', 'media', 'image1.png')
+    if not os.path.exists(logo_path):
+        logo_path = 'assets_template/word/media/image1.png'
+    r_logo.add_picture(logo_path, width=Inches(1.0))
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -1379,3 +1369,4 @@ def generate_report_26_pages():
 
 if __name__ == "__main__":
     generate_report_26_pages()
+
